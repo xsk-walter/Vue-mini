@@ -20,7 +20,12 @@ class Vue {
         // 1.通过属性保存选项的数据
         this.$options = options || {}
         this.$data = options.data || {}
-        this.$el = typeof this.$options.el === 'string' ? document.querySelector('#app') : this.$options.el
+        // TODO更正一: this.$options.el 替代 写死的'#app'，这样更通用
+        // this.$el = typeof this.$options.el === 'string' ? document.querySelector('#app') : this.$options.el
+        this.$el =
+          typeof this.$options.el === 'string'
+            ? document.querySelector(this.$options.el)
+            : this.$options.el
         
         // TODO:_ProxyData 和Observer的区别
         /**
